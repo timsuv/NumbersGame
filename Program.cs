@@ -72,6 +72,7 @@ namespace NumbersGame
             else
             {
                 Console.WriteLine("Oj det var långt ifrån!");
+                Console.WriteLine("commit");
             }
         }
         static void Main(string[] args)
