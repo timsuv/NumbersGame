@@ -8,7 +8,7 @@ namespace NumbersGame
         static void GuessCount(int number)
         {
             int guessCount = 0;
-            int guessLimit = 5;
+            int guessLimit = 10;
             bool outOfGuesses = false;
             int userNumber = 0;
             
