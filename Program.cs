@@ -11,12 +11,12 @@ namespace NumbersGame
             int guessLimit = 5;
             bool outOfGuesses = false;
             int userNumber = 0;
-            
 
-            Console.WriteLine("Välkommen! Jag tänker på ett nummer mellan 1 -20. Kan du gissa vilket? Du får fem försök");
+
+            Console.WriteLine("Välkommen! Jag tänker på ett nummer mellan 1 - 20. Kan du gissa vilket? Du får fem försök");
             Console.WriteLine("Skriv din siffra!");
 
-           
+
 
             while (!outOfGuesses)
             {
@@ -42,7 +42,7 @@ namespace NumbersGame
                         }
                         if (guessCount < guessLimit)
                         {
-                            
+
                             Console.WriteLine($"Du har kvar {guessLimit - guessCount} försök! \nFörsök med en ny siffra");
                         }
                         else
@@ -63,7 +63,7 @@ namespace NumbersGame
                 }
             }
         }
-        static void AlmostOrNot (int number, int userNumber)
+        static void AlmostOrNot(int number, int userNumber)
         {
             if (number - userNumber == 1 || userNumber - number == 1)
             {
@@ -71,16 +71,44 @@ namespace NumbersGame
             }
             else
             {
-                Console.WriteLine("Oj det var långt ifrån!");
-                Console.WriteLine("commit");
+                Console.WriteLine("Det var långt ifrån!");
+
             }
         }
         static void Main(string[] args)
         {
             Random random = new Random();
-            int number = random.Next(1, 20);
+            int number = random.Next(1, 2);
+            bool playAgain= false;
+
+            while (!playAgain)
+            {
             GuessCount(number);
-           
+                Console.WriteLine("Vill du spela igen? (ja/nej)");
+
+                while (true)
+                {
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "ja")
+                    {
+                        playAgain = false;
+                        Console.Clear();
+                        break;
+                    }
+                    else if (answer == "nej")
+                    {
+                        playAgain = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Skriv ja eller nej");
+                    }
+                }
+            }
+
+
+
 
         }
     }
