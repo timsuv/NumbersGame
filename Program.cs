@@ -11,7 +11,9 @@ namespace NumbersGame
             int guessLimit = 5;
             bool outOfGuesses = false;
             int userNumber = 0;
-
+            int stringLowGuess = -1;
+            int stringHighGuess = -1;
+           
 
             Console.WriteLine("Välkommen! Jag tänker på ett nummer mellan 1 - 20. Kan du gissa vilket? Du får fem försök");
             Console.WriteLine("Skriv din siffra!");
@@ -20,6 +22,15 @@ namespace NumbersGame
 
             while (!outOfGuesses)
             {
+                //creating an array to to the randomise the message for the low guess and high guesses
+                string[] lowGuess = new string[4] { "Tyvärr det var för lågt!", "Ha ha, lågt", "nope, låg", "försök igen, det var lågt" };
+                Random randomLowGuesss = new Random();
+                stringLowGuess = randomLowGuesss.Next(0, lowGuess.Length);
+
+                string[] highGuess = new string[4] { "För högt!", "Wow, det var långt ifrån", "Ha Ha försök igen, det var långt ifrån", "Nej för högt" };
+                Random randomHighGuesses = new Random();
+                stringHighGuess = randomHighGuesses.Next(0, highGuess.Length);
+
                 if (Int32.TryParse(Console.ReadLine().Trim(), out userNumber))
                 {
                     if (userNumber > 0 && userNumber < 21) //checks is userNumber is in the range
@@ -27,12 +38,13 @@ namespace NumbersGame
                         guessCount++;
                         if (userNumber < number)
                         {
-                            Console.WriteLine("Du gissade för lågt!");
+                            Console.WriteLine(lowGuess[stringLowGuess]);
+                            
                             AlmostOrNot(number, userNumber);
                         }
                         else if (userNumber > number)
                         {
-                            Console.WriteLine("Du gissade för högt!");
+                            Console.WriteLine(highGuess[stringHighGuess]);
                             AlmostOrNot(number, userNumber);
                         }
                         else
@@ -77,14 +89,17 @@ namespace NumbersGame
         }
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int number = random.Next(1, 2);
-            bool playAgain= false;
+            bool playAgain = false;
+
 
             while (!playAgain)
             {
-            GuessCount(number);
+                Random random = new Random();
+                int number = random.Next(1, 21);
+
+                GuessCount(number);
                 Console.WriteLine("Vill du spela igen? (ja/nej)");
+
 
                 while (true)
                 {
