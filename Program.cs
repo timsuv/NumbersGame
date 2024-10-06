@@ -1,5 +1,5 @@
 ﻿using System.Net.NetworkInformation;
-
+//Timofey Suvorov, NET2024
 namespace NumbersGame
 
 {
